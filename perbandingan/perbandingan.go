@@ -14,10 +14,7 @@ func main() {
 	}
 	//output false
 
-
-
 	fmt.Printf("nilai %d (%t) \n", value, isEqual) //output 3 (false)
-
 
 	if value == 3 && result == 3 {
 		fmt.Println(true)
@@ -26,18 +23,15 @@ func main() {
 	}
 	//output true
 
+	point := 6
 
-	 point := 6
-
-	switch point  {
+	switch point {
 	case 10, 9:
-		fmt.Println("perfect");
+		fmt.Println("perfect")
 	case 8, 7:
-		fmt.Println("awesome");
-	default :
+		fmt.Println("awesome")
+	default:
 		fmt.Println("Not Bad")
 	}
-
-	 
 
 }
