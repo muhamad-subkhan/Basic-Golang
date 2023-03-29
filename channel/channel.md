@@ -1,4 +1,4 @@
-<b?>Channel</b><br>
+<b>Channel</b><br>
 digunakan untuk memfasilitasi komunikasi dan sinkronisasi antara Goroutine (concurant thread of execution). Channel menyediakan sebuah mekanisme dimana satu goroutine dapat mengirimkan data ke goroutine lain atau menerima data goroutine lain dengan cara yang aman dan sinkronis.
 <br><br><br>
 
