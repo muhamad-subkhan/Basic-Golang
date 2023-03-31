@@ -12,17 +12,45 @@ Menyimpan data pada konteks: Context dapat menyimpan data dengan kunci (key) pad
 Beroperasi di lingkungan multigoroutine: Context memungkinkan komunikasi antar goroutine tanpa menggunakan mekanisme yang rentan deadlock dan race condition.
 
 Dalam pengembangan aplikasi Go, Context menjadi sangat penting ketika aplikasi menangani beberapa permintaan sekaligus. Context memberikan mekanisme untuk mengelola waktu hidup permintaan dan menghindari penggunaan memori yang berlebihan. Oleh karena itu, penggunaan Context sangat disarankan dalam pengembangan aplikasi Go yang handal dan aman.
-<br>
+<br><br><br>
 <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--nbKyLWT1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6eos6t546i539bbwr0rl.png" alt="context" />
-<br><br>
+<br><br><br>
 
 <b>Contoh Program</b><br>
 
 ```go
+package main
 
+import (
+	"context"
+	"fmt"
+)
+
+func main() {
+
+	contextParent := context.Background()
+
+	ctxSatu := context.WithValue(contextParent, "key1", "Hello World")
+	ctxDua  := context.WithValue(ctxSatu, "key2", "Hello girls")
+	ctxTiga := context.WithValue(ctxDua, "key3", "Hello boys")
+	ctxEmpat := context.WithValue(contextParent, "key4", "Hello Children")
+	ctxLima := context.WithValue(ctxSatu, "key5", "Hello Later")
+
+	fmt.Println(ctxLima.Value("key5"))
+	fmt.Println(ctxLima.Value("key4"))
+	fmt.Println(ctxLima.Value("key3"))
+	fmt.Println(ctxLima.Value("key2"))
+	fmt.Println(ctxLima.Value("key1"))
+	fmt.Println(ctxTiga.Value("key1"))
+	fmt.Println(ctxEmpat.Value("key1"))
+}
 ``
 
+Pada program ini, terdapat fungsi "main" yang melakukan beberapa operasi dengan menggunakan context. Pertama-tama, dibuat context parent dengan menggunakan fungsi "context.Background()". Context parent ini kemudian digunakan sebagai parameter pada beberapa fungsi "context.WithValue()", yang akan mengembalikan sebuah context baru dengan nilai tertentu yang ditentukan.
 
+Context baru tersebut diberi nama "ctxSatu", "ctxDua", "ctxTiga", "ctxEmpat", dan "ctxLima". Pada setiap context baru tersebut, dilakukan pemberian nilai pada beberapa key tertentu.
+
+Setelah context baru dibuat, program mencetak nilai dari masing-masing key pada beberapa context yang berbeda menggunakan fungsi "Value()" pada setiap context tersebut. Output program menampilkan nilai-nilai pada setiap key di dalam setiap context yang telah dibuat.
 
 
 
